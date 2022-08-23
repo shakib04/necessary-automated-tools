@@ -27,7 +27,10 @@
 
 <script>
 
+setInterval(generateUATTagName, 10);
+
 generateUATTagName();
+
 
 function generateUATTagName(){
   uatTagName =  "uat-" + new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getUTCDate() + "-" + new Date().getHours() + new Date().getMinutes();
