@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title></title>
+  </head>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"
+  ></script>
+
+  <table class="table">
+    <tr>
+      <td>UAT Tag</td>
+      <td><strong id="uatTagName"> </strong></td>
+      <td>
+        <button onclick="copyToClipBoard()" class="btn btn-outline-primary">
+          Copy
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    setInterval(generateUATTagName, 1000 * 60);
+
+    generateUATTagName();
+
+    function generateUATTagName() {
+      console.log('generateUATTagName method called');
+      uatTagName =
+        'uat-' +
+        new Date().getFullYear() +
+        '-' +
+        (new Date().getMonth() + 1) +
+        '-' +
+        new Date().getUTCDate() +
+        '-' +
+        new Date().getHours() +
+        new Date().getMinutes();
+
+      document.getElementById('uatTagName').innerText = uatTagName;
+    }
+
+    function copyToClipBoard() {
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(uatTagName);
+
+      /* Alert the copied text */
+      alert('Copied the text: ' + uatTagName);
+    }
+  </script>
+</html>
