@@ -27,7 +27,7 @@
     crossorigin="anonymous"
   ></script>
 
-  <table class="table">
+  <table class="table table-bordered">
     <tr>
       <td>UAT Tag</td>
       <td><strong id="uatTagName"> </strong></td>
@@ -55,9 +55,12 @@
         new Date().getUTCDate() +
         '-' +
         new Date().getHours() +
-        new Date().getMinutes();
+        (new Date().getMinutes() < 10
+          ? '0' + new Date().getMinutes()
+          : new Date().getMinutes());
 
       document.getElementById('uatTagName').innerText = uatTagName;
+      copyToClipBoard();
     }
 
     function copyToClipBoard() {
