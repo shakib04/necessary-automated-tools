@@ -27,12 +27,13 @@
 
 <script>
 
-setInterval(generateUATTagName, 10);
+setInterval(generateUATTagName, 1000 * 60);
 
 generateUATTagName();
 
 
 function generateUATTagName(){
+  console.log('generateUATTagName method called')
   uatTagName =  "uat-" + new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getUTCDate() + "-" + new Date().getHours() + new Date().getMinutes();
 
   document.getElementById("uatTagName").innerText = uatTagName;
