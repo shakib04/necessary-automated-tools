@@ -27,27 +27,93 @@
     crossorigin="anonymous"
   ></script>
 
-  <table class="table">
+
+  <table class="table table-striped">
     <tr>
-      <td>UAT Tag</td>
-      <td><strong id="uatTagName"> </strong></td>
+      <th class="">Tag</th>
+      <th>Action</th>
+    </tr>
+    <tr>
       <td>
-        <button onclick="copyToClipBoard()" class="btn btn-outline-primary">
+        UAT Tag
+        <br><small>(Ex- uat-2023-3-20-1444)</small>
+      </td>
+      <!-- <td><strong id="uatTagName"> </strong></td> -->
+      <td>
+        <button onclick="copyToClipBoard('uat')" class="btn btn-sm btn-outline-primary">
           Copy
+        </button>
+        
+        <button onclick="openGitlab('uat')" class="btn btn-sm btn-link">
+          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
         </button>
       </td>
     </tr>
+
+    <tr>
+      <td>
+        Testing Tag
+        <br><small>(Ex- testing-2023-3-20-1444)</small>
+      </td>
+      <!-- <td><strong id="testTagName"> </strong></td> -->
+      <td>
+        <button onclick="copyToClipBoard('testing')" class="btn btn-sm btn-outline-primary">
+          Copy
+        </button>
+
+        <button onclick="openGitlab('testing')" class="btn btn-sm btn-link">
+          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+        </button>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>Demo Tag
+        <br><small>(Ex- demo-2023-3-20-1444)</small>
+      </td>
+      <!-- <td><strong id="testTagName"> </strong></td> -->
+      <td>
+        <button onclick="copyToClipBoard('demo')" class="btn btn-sm btn-outline-primary">
+          Copy
+        </button>
+
+        <button onclick="openGitlab('demo')" class="btn btn-sm btn-link">
+          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+        </button>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>Production Tag
+        <br><small>(Ex- production-2023-3-20-1444)</small>
+      </td>
+      <!-- <td><strong id="testTagName"> </strong></td> -->
+      <td>
+        <button onclick="copyToClipBoard('production')" class="btn btn-sm btn-outline-primary">
+          Copy
+        </button>
+
+        <button onclick="openGitlab('production')" class="btn btn-sm btn-link">
+          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+        </button>
+      </td>
+    </tr>
+
   </table>
 
+  <div class="text-success" id="success-msg"></div>
+
   <script>
-    setInterval(generateUATTagName, 1000 * 60);
+    //setInterval(generateUATTagName, 1000 * 60);
 
-    generateUATTagName();
+    
 
-    function generateUATTagName() {
+    function generateUATTagName(tagPre) {
       console.log('generateUATTagName method called');
       uatTagName =
-        'uat-' +
+        tagPre + '-' +
         new Date().getFullYear() +
         '-' +
         (new Date().getMonth() + 1) +
@@ -59,16 +125,38 @@
           ? '0' + new Date().getMinutes()
           : new Date().getMinutes());
 
-      document.getElementById('uatTagName').innerText = uatTagName;
-      copyToClipBoard();
+      //document.getElementById('uatTagName').innerText = uatTagName;
+      //copyToClipBoard();
     }
 
-    function copyToClipBoard() {
+    function copyToClipBoard(tagPre) {
+      generateUATTagName(tagPre);
       /* Copy the text inside the text field */
       navigator.clipboard.writeText(uatTagName);
 
       /* Alert the copied text */
-      alert('Copied the text: ' + uatTagName);
+      //alert('Copied the text: ' + uatTagName);
+      document.getElementById('success-msg').innerHTML = 'Copy Success!  : <strong>' + uatTagName +'</strong>'
     }
+
+    function openGitlab(tagPre){
+      generateUATTagName(tagPre);
+      
+      branch = 'qa_release_sept_2022'
+      if(tagPre == 'testing'){
+        branch = 'qa_release_sept_2022'
+      }
+      else if(tagPre == 'demo'){
+        branch = 'demo-instance'
+      }
+      else if(tagPre == 'uat'){
+        branch = 'feature/bypass-ldap'
+      }
+      else if(tagPre == 'production'){
+        branch = 'develop'
+      }
+      window.open('https://gitlab.bracits.com/bits-internal/bits-hr-payroll/-/tags/new?tag_name=' + uatTagName + '&ref=' + branch)
+    }
+
   </script>
 </html>
