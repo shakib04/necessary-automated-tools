@@ -33,6 +33,24 @@
       <th class="">Tag</th>
       <th>Action</th>
     </tr>
+    
+    <tr>
+    <td>
+      Smart-MF (Training) Tag
+      <br><small>(Ex- smartmf-training-2023-06-04-18-53)</small>
+    </td>
+    <!-- <td><strong id="uatTagName"> </strong></td> -->
+    <td>
+      <button onclick="copyToClipBoard('smartmf-training', true)" class="btn btn-sm btn-outline-primary">
+        Copy
+      </button>
+      
+      <button onclick="openGitlabSmartMF('smartmf-training')" class="btn btn-sm btn-link">
+        Smart-MF Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+      </button>
+    </td>
+  </tr>
+    
     <tr>
       <td>
         UAT Tag
@@ -108,11 +126,26 @@
   <script>
     //setInterval(generateUATTagName, 1000 * 60);
 
-    
+    var uatTagName = '';
 
-    function generateUATTagName(tagPre) {
+    function generateUATTagName(tagPre, isTwentyFourClock) {
       console.log('generateUATTagName method called');
-      uatTagName =
+      
+
+      if(isTwentyFourClock){
+        uatTagName =
+        tagPre + '-' +
+        new Date().getFullYear() +
+        '-' +
+        (new Date().getMonth() + 1 < 10 ? '0' + new Date().getMonth() : new Date().getMonth()) +
+        '-' +
+        (new Date().getUTCDate() < 10 ? '0' + new Date().getUTCDate() : new Date().getUTCDate()) +
+        '-' +
+        (new Date().getHours() > 12 ? new Date().getHours() - 12 : new Date().getHours()) +
+        (new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()) + 
+        (new Date().getHours() > 12 ? "PM" : "AM");
+      }else{
+        uatTagName =
         tagPre + '-' +
         new Date().getFullYear() +
         '-' +
@@ -121,16 +154,15 @@
         new Date().getUTCDate() +
         '-' +
         new Date().getHours() +
-        (new Date().getMinutes() < 10
-          ? '0' + new Date().getMinutes()
-          : new Date().getMinutes());
+        (new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes());
+      }   
 
       //document.getElementById('uatTagName').innerText = uatTagName;
       //copyToClipBoard();
     }
 
-    function copyToClipBoard(tagPre) {
-      generateUATTagName(tagPre);
+    function copyToClipBoard(tagPre, isTwentyFourClock) {
+      generateUATTagName(tagPre, isTwentyFourClock);
       /* Copy the text inside the text field */
       navigator.clipboard.writeText(uatTagName);
 
@@ -140,7 +172,7 @@
     }
 
     function openGitlab(tagPre){
-      generateUATTagName(tagPre);
+      generateUATTagName(tagPre, false);
       
       branch = 'qa_release_sept_2022'
       if(tagPre == 'testing'){
@@ -156,6 +188,25 @@
         branch = 'develop'
       }
       window.open('https://gitlab.bracits.com/bits-internal/bits-hr-payroll/-/tags/new?tag_name=' + uatTagName + '&ref=' + branch)
+    }
+
+    function openGitlabSmartMF(tagPre){
+      generateUATTagName(tagPre, true);
+      
+      branch = 'feature/refactore-lib-validate'
+      if(tagPre == 'training'){
+        branch = 'feature/refactore-lib-validate'
+      }
+      // else if(tagPre == 'demo'){
+      //   branch = 'demo-instance'
+      // }
+      // else if(tagPre == 'uat'){
+      //   branch = 'feature/bypass-ldap'
+      // }
+      // else if(tagPre == 'production'){
+      //   branch = 'develop'
+      // }
+      window.open('https://gitlab.bracits.com/brac/sbicloud-bd-v3/member-onboarding-backend-java/-/tags/new?tag_name=' + uatTagName + '&ref=' + branch)
     }
 
   </script>
