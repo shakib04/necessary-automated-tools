@@ -27,43 +27,59 @@
     crossorigin="anonymous"
   ></script>
 
-
   <table class="table table-striped">
     <tr>
       <th class="">Tag</th>
       <th>Action</th>
     </tr>
-    
-    <tr>
-    <td>
-      Smart-MF (Training) Tag
-      <br><small>(Ex- smartmf-training-2023-06-04-18-53)</small>
-    </td>
-    <!-- <td><strong id="uatTagName"> </strong></td> -->
-    <td>
-      <button onclick="copyToClipBoard('smartmf-training', true)" class="btn btn-sm btn-outline-primary">
-        Copy
-      </button>
-      
-      <button onclick="openGitlabSmartMF('smartmf-training')" class="btn btn-sm btn-link">
-        Smart-MF Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
-      </button>
-    </td>
-  </tr>
-    
+
     <tr>
       <td>
-        UAT Tag
-        <br><small>(Ex- uat-2023-3-20-1444)</small>
+        Smart-MF (Training) Tag
+        <br /><small>(Ex- smartmf-training-2023-06-04-0653PM)</small>
       </td>
       <!-- <td><strong id="uatTagName"> </strong></td> -->
       <td>
-        <button onclick="copyToClipBoard('uat')" class="btn btn-sm btn-outline-primary">
+        <button
+          onclick="copyToClipBoard('smartmf-training', true)"
+          class="btn btn-sm btn-outline-primary"
+        >
           Copy
         </button>
-        
+
+        <button
+          onclick="openGitlabSmartMF('smartmf-training')"
+          class="btn btn-sm btn-link"
+        >
+          Smart-MF Tag
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png"
+            width="20"
+          />
+        </button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        UAT Tag
+        <br /><small>(Ex- uat-2023-3-20-1444)</small>
+      </td>
+      <!-- <td><strong id="uatTagName"> </strong></td> -->
+      <td>
+        <button
+          onclick="copyToClipBoard('uat')"
+          class="btn btn-sm btn-outline-primary"
+        >
+          Copy
+        </button>
+
         <button onclick="openGitlab('uat')" class="btn btn-sm btn-link">
-          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+          HR Payroll Tag
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png"
+            width="20"
+          />
         </button>
       </td>
     </tr>
@@ -71,143 +87,177 @@
     <tr>
       <td>
         Testing Tag
-        <br><small>(Ex- testing-2023-3-20-1444)</small>
+        <br /><small>(Ex- testing-2023-3-20-1444)</small>
       </td>
       <!-- <td><strong id="testTagName"> </strong></td> -->
       <td>
-        <button onclick="copyToClipBoard('testing')" class="btn btn-sm btn-outline-primary">
+        <button
+          onclick="copyToClipBoard('testing')"
+          class="btn btn-sm btn-outline-primary"
+        >
           Copy
         </button>
 
         <button onclick="openGitlab('testing')" class="btn btn-sm btn-link">
-          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+          HR Payroll Tag
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png"
+            width="20"
+          />
         </button>
       </td>
     </tr>
 
-
     <tr>
-      <td>Demo Tag
-        <br><small>(Ex- demo-2023-3-20-1444)</small>
-      </td>
+      <td>Demo Tag <br /><small>(Ex- demo-2023-3-20-1444)</small></td>
       <!-- <td><strong id="testTagName"> </strong></td> -->
       <td>
-        <button onclick="copyToClipBoard('demo')" class="btn btn-sm btn-outline-primary">
+        <button
+          onclick="copyToClipBoard('demo')"
+          class="btn btn-sm btn-outline-primary"
+        >
           Copy
         </button>
 
         <button onclick="openGitlab('demo')" class="btn btn-sm btn-link">
-          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+          HR Payroll Tag
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png"
+            width="20"
+          />
         </button>
       </td>
     </tr>
 
-
     <tr>
-      <td>Production Tag
-        <br><small>(Ex- production-2023-3-20-1444)</small>
+      <td>
+        Production Tag <br /><small>(Ex- production-2023-3-20-1444)</small>
       </td>
       <!-- <td><strong id="testTagName"> </strong></td> -->
       <td>
-        <button onclick="copyToClipBoard('production')" class="btn btn-sm btn-outline-primary">
+        <button
+          onclick="copyToClipBoard('production')"
+          class="btn btn-sm btn-outline-primary"
+        >
           Copy
         </button>
 
         <button onclick="openGitlab('production')" class="btn btn-sm btn-link">
-          HR Payroll Tag <img src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png" width="20" />
+          HR Payroll Tag
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4949/4949024.png"
+            width="20"
+          />
         </button>
       </td>
     </tr>
-
   </table>
 
   <div class="text-success" id="success-msg"></div>
 
   <script>
     //setInterval(generateUATTagName, 1000 * 60);
+    
+        var uatTagName = '';
+  
+        var jsDate = new Date();      
+        var year = jsDate.getFullYear();
+        var month = jsDate.getMonth();
+        var utcDate = jsDate.getUTCDate();
+        var hours = jsDate.getHours();
+        var minutes  = jsDate.getMinutes();
 
-    var uatTagName = '';
-
-    function generateUATTagName(tagPre, isTwentyFourClock) {
-      console.log('generateUATTagName method called');
-      
-
-      if(isTwentyFourClock){
-        uatTagName =
-        tagPre + '-' +
-        new Date().getFullYear() +
-        '-' +
-        (new Date().getMonth() + 1 < 10 ? '0' + new Date().getMonth() : new Date().getMonth()) +
-        '-' +
-        (new Date().getUTCDate() < 10 ? '0' + new Date().getUTCDate() : new Date().getUTCDate()) +
-        '-' +
-        (new Date().getHours() > 12 ? new Date().getHours() - 12 : new Date().getHours()) +
-        (new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()) + 
-        (new Date().getHours() > 12 ? "PM" : "AM");
-      }else{
-        uatTagName =
-        tagPre + '-' +
-        new Date().getFullYear() +
-        '-' +
-        (new Date().getMonth() + 1) +
-        '-' +
-        new Date().getUTCDate() +
-        '-' +
-        new Date().getHours() +
-        (new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes());
-      }   
-
-      //document.getElementById('uatTagName').innerText = uatTagName;
-      //copyToClipBoard();
-    }
-
-    function copyToClipBoard(tagPre, isTwentyFourClock) {
-      generateUATTagName(tagPre, isTwentyFourClock);
-      /* Copy the text inside the text field */
-      navigator.clipboard.writeText(uatTagName);
-
-      /* Alert the copied text */
-      //alert('Copied the text: ' + uatTagName);
-      document.getElementById('success-msg').innerHTML = 'Copy Success!  : <strong>' + uatTagName +'</strong>'
-    }
-
-    function openGitlab(tagPre){
-      generateUATTagName(tagPre, false);
-      
-      branch = 'qa_release_sept_2022'
-      if(tagPre == 'testing'){
-        branch = 'qa_release_sept_2022'
-      }
-      else if(tagPre == 'demo'){
-        branch = 'demo-instance'
-      }
-      else if(tagPre == 'uat'){
-        branch = 'feature/bypass-ldap'
-      }
-      else if(tagPre == 'production'){
-        branch = 'develop'
-      }
-      window.open('https://gitlab.bracits.com/bits-internal/bits-hr-payroll/-/tags/new?tag_name=' + uatTagName + '&ref=' + branch)
-    }
-
-    function openGitlabSmartMF(tagPre){
-      generateUATTagName(tagPre, true);
-      
-      branch = 'feature/refactore-lib-validate'
-      if(tagPre == 'training'){
-        branch = 'feature/refactore-lib-validate'
-      }
-      // else if(tagPre == 'demo'){
-      //   branch = 'demo-instance'
-      // }
-      // else if(tagPre == 'uat'){
-      //   branch = 'feature/bypass-ldap'
-      // }
-      // else if(tagPre == 'production'){
-      //   branch = 'develop'
-      // }
-      window.open('https://gitlab.bracits.com/brac/sbicloud-bd-v3/member-onboarding-backend-java/-/tags/new?tag_name=' + uatTagName + '&ref=' + branch)
-    }
-
+        function refreshDate(){
+        jsDate = new Date();
+        year = jsDate.getFullYear();
+        month = jsDate.getMonth();
+        utcDate = jsDate.getUTCDate();
+        hours = jsDate.getHours();
+        minutes = jsDate.getMinutes();
+        }
+  
+    
+        function generateUATTagName(tagPre, isTwentyFourClock) {
+          refreshDate();
+          console.log('generateUATTagName method called');
+  
+          if(isTwentyFourClock){
+            uatTagName =
+            tagPre + '-' +
+            year +
+            '-' +
+            (month + 1 < 10 ? '0' + month : month) +
+            '-' +
+            (utcDate < 10 ? '0' + utcDate : utcDate) +
+            '-' +
+            (hours < 10 ? '0' + hours : hours) +
+            (minutes < 10 ? '0' + minutes : minutes);
+          }else{
+            let beutifiedHours = hours > 12 ? hours - 12 : hours;
+            beutifiedHours = beutifiedHours < 10 ? '0' + beutifiedHours : beutifiedHours;
+            uatTagName =
+            tagPre + '-' +
+            year +
+            '-' +
+            (month + 1) +
+            '-' +
+            utcDate +
+            '-' +
+            beutifiedHours +
+            (minutes < 10 ? '0' + minutes : minutes) +
+            (hours > 12 ? "PM" : "AM");
+          }
+    
+          //document.getElementById('uatTagName').innerText = uatTagName;
+          //copyToClipBoard();
+        }
+    
+        function copyToClipBoard(tagPre, isTwentyFourClock) {
+          generateUATTagName(tagPre, isTwentyFourClock);
+          /* Copy the text inside the text field */
+          navigator.clipboard.writeText(uatTagName);
+    
+          /* Alert the copied text */
+          //alert('Copied the text: ' + uatTagName);
+          document.getElementById('success-msg').innerHTML = 'Copy Success!  : <strong>' + uatTagName +'</strong>'
+        }
+    
+        function openGitlab(tagPre){
+          generateUATTagName(tagPre, false);
+    
+          branch = 'qa_release_sept_2022'
+          if(tagPre == 'testing'){
+            branch = 'qa_release_sept_2022'
+          }
+          else if(tagPre == 'demo'){
+            branch = 'demo-instance'
+          }
+          else if(tagPre == 'uat'){
+            branch = 'feature/bypass-ldap'
+          }
+          else if(tagPre == 'production'){
+            branch = 'develop'
+          }
+          window.open('https://gitlab.bracits.com/bits-internal/bits-hr-payroll/-/tags/new?tag_name=' + uatTagName + '&ref=' + branch)
+        }
+    
+        function openGitlabSmartMF(tagPre){
+          generateUATTagName(tagPre, false);
+    
+          branch = 'feature/refactore-lib-validate'
+          if(tagPre == 'training'){
+            branch = 'feature/refactore-lib-validate'
+          }
+          // else if(tagPre == 'demo'){
+          //   branch = 'demo-instance'
+          // }
+          // else if(tagPre == 'uat'){
+          //   branch = 'feature/bypass-ldap'
+          // }
+          // else if(tagPre == 'production'){
+          //   branch = 'develop'
+          // }
+          window.open('https://gitlab.bracits.com/brac/sbicloud-bd-v3/member-onboarding-backend-java/-/tags/new?tag_name=' + uatTagName + '&ref=' + branch)
+        }
   </script>
 </html>
